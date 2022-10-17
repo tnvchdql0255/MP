@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./comp/LoginMenu";
 import MainMenu from "./comp/MainMenu";
 
-const Stack = createNativeStackNavigator(); //네이게이션 스택 생성
+const Stack = createNativeStackNavigator(); //네비게이션 스택 생성
 
 export default function App() {
   return (

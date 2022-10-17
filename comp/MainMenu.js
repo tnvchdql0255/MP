@@ -1,7 +1,4 @@
 import { Text, View, StyleSheet, Button } from "react-native";
-import React, { Component } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 export default function MainMenu(props) {
   return (
     <View style={styles.container}>
@@ -13,6 +10,7 @@ export default function MainMenu(props) {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
