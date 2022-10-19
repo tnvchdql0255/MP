@@ -11,8 +11,22 @@ const Stack = createNativeStackNavigator(); //네비게이션 스택 생성
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="MainMenu" component={MainMenu}></Stack.Screen>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#ffbf00",
+          },
+          headerTintColor: "#fff", //헤더 텍스트 색상
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      >
+        <Stack.Screen
+          name="MainMenu"
+          component={MainMenu}
+          options
+        ></Stack.Screen>
         <Stack.Screen name="LoginScreen" component={LoginScreen}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

@@ -2,6 +2,7 @@ import { Text, View, StyleSheet, Button, TextInput } from "react-native";
 import { useState } from "react";
 import TextInputMethod from "./TextInput";
 import { LinearGradient } from "expo-linear-gradient"; //npx expo install expo-linear-gradient
+
 export default function LoginScreen(props) {
   const [IDinputData, setIDInputData] = useState("");
   const [PWinputData, setPWInputData] = useState("");
@@ -20,7 +21,7 @@ export default function LoginScreen(props) {
         colors={["rgba(240,163,10,0.8)", "transparent"]}
         style={styles.background}
       ></LinearGradient>
-      <Text>Welcome to online study!</Text>
+      <Text style={styles.textStyle}>Welcome to online study!</Text>
       <TextInputMethod
         inputData={IDinputData}
         onChangeText={onChangeID}
@@ -41,6 +42,8 @@ export default function LoginScreen(props) {
   );
 }
 const styles = StyleSheet.create({
+  textStyle: { fontWeight: "bold", fontSize: 30, margin: 20 },
+
   container: {
     flex: 1,
     backgroundColor: "#fff",
