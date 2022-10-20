@@ -1,0 +1,14 @@
+22.10.20
+추가한 사람: 임건우
+확장 라이브러리: 
+    앱 페이지이동(네비게이션)
+    npm install @react-navigation/native
+    npm install @react-navigation/native-stack
+    참고한 강의: https://www.youtube.com/watch?v=TKSRzf5eBNI
+    
+    LinearColor Gradient (선형색상그라데이션)
+    expo install lInear-gradient
+    참고한 강의: expo공식사이트 참조
+
+--아래에도 동일한 형식으로 작성--
+
