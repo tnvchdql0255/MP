@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import LoginScreen from "./comp/LoginMenu";
 import MainMenu from "./comp/MainMenu";
-
+import Register from "./comp/Register";
 const Stack = createNativeStackNavigator(); //네비게이션 스택 생성
 
 export default function App() {
@@ -22,12 +22,9 @@ export default function App() {
           },
         }}
       >
-        <Stack.Screen
-          name="MainMenu"
-          component={MainMenu}
-          options
-        ></Stack.Screen>
         <Stack.Screen name="LoginScreen" component={LoginScreen}></Stack.Screen>
+        <Stack.Screen name="MainMenu" component={MainMenu}></Stack.Screen>
+        <Stack.Screen name="Register" component={Register}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

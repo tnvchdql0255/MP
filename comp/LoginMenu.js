@@ -35,8 +35,12 @@ export default function LoginScreen(props) {
         placeholder="password"
       ></TextInputMethod>
       <Button
-        title="GotoMainMenu"
+        title="로그인"
         onPress={() => props.navigation.navigate("MainMenu")}
+      ></Button>
+      <Button
+        title="회원 가입"
+        onPress={() => props.navigation.navigate("Register")}
       ></Button>
     </View>
   );
