@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, Button } from "react-native";
 export default function MainMenu(props) {
+  console.log(props);
   return (
     <View style={styles.container}>
       <Text>This is MainMenu! Yeah!</Text>

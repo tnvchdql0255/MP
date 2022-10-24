@@ -1,21 +1,18 @@
 import React, { useState } from "react";
 import { View, Button } from "react-native";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { firebaseConfig } from "./firebaseConfig";
-import { initializeApp } from "firebase/app";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import TextInputMethod from "./TextInput";
 
-export default function Register() {
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+export default function Register(props) {
+  const auth = props.auth;
+  console.log(auth);
   const [ID, setID] = useState("");
   const [PW, setPW] = useState({ pw: "", pwCheck: "" });
-  const [code, setCode] = useState("");
+
   const handleCreateAccount = () => {
     createUserWithEmailAndPassword(auth, ID, PW.pw)
       .then(() => {
         alert("계정생성됨");
-        console.log(user);
       })
       .catch((error) => {
         alert(error);
@@ -31,14 +28,11 @@ export default function Register() {
   function onChangePWC(event) {
     setPW({ ...PW, pwCheck: event });
   }
-  function onChangeCode(event) {
-    setCode(event);
-  }
   function checkPW_isEqual() {
     if (PW.pw == PW.pwCheck) {
       handleCreateAccount();
     } else {
-      alert("is not same");
+      alert("비밀번호가 일치하지 않습니다");
     }
   }
 
