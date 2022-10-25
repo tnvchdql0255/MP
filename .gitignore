@@ -9,10 +9,14 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+<<<<<<< HEAD
 package-lock.json
 package.json
 babel.config.js
 yarn.lock
 .expo-shared/
+=======
+
+>>>>>>> 521bd10 (add)
 # macOS
 .DS_Store
