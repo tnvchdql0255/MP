@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
@@ -46,31 +45,12 @@ export default function App() {
     </NavigationContainer>
   );
 } //컴포넌트들은 모두 Stack의 컴포넌트로 사용됨
-=======
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
->>>>>>> 521bd10 (add)
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-<<<<<<< HEAD
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-=======
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
->>>>>>> 521bd10 (add)
   },
 });
