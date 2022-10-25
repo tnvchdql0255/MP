@@ -2,10 +2,30 @@ import { Text, View, StyleSheet, Button, TextInput } from "react-native";
 import { useState } from "react";
 import TextInputMethod from "./TextInput";
 import { LinearGradient } from "expo-linear-gradient"; //npx expo install expo-linear-gradient
+import { signInWithEmailAndPassword } from "firebase/auth";
+import Toast from "react-native-root-toast";
 
 export default function LoginScreen(props) {
+  const auth = props.auth;
   const [IDinputData, setIDInputData] = useState("");
   const [PWinputData, setPWInputData] = useState("");
+
+  const handleLogin = () => {
+    signInWithEmailAndPassword(auth, IDinputData, PWinputData)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        Toast.show("환영합니다", {
+          duration: Toast.durations.SHORT,
+          position: Toast.positions.BOTTOM,
+          animation: false,
+          delay: 0,
+        });
+        props.navigation.navigate("MainMenu");
+      })
+      .catch((error) => {
+        alert("로그인실패");
+      });
+  };
 
   function onChangeID(event) {
     setIDInputData(event);
@@ -34,9 +54,10 @@ export default function LoginScreen(props) {
         secureTextEntry={true}
         placeholder="password"
       ></TextInputMethod>
+      <Button title="로그인" onPress={() => handleLogin()}></Button>
       <Button
-        title="GotoMainMenu"
-        onPress={() => props.navigation.navigate("MainMenu")}
+        title="회원 가입"
+        onPress={() => props.navigation.navigate("Register")}
       ></Button>
     </View>
   );
