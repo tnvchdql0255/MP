@@ -3,6 +3,7 @@ import { useState } from "react";
 import TextInputMethod from "./TextInput";
 import { LinearGradient } from "expo-linear-gradient"; //npx expo install expo-linear-gradient
 import { signInWithEmailAndPassword } from "firebase/auth";
+
 import Toast from "react-native-root-toast";
 
 export default function LoginScreen(props) {
