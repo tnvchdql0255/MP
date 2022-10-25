@@ -10,7 +10,7 @@ node 버전:16.17.0
     참고한 강의: https://www.youtube.com/watch?v=TKSRzf5eBNI
     
     LinearColor Gradient (선형색상그라데이션)
-    expo install lInear-gradient
+    expo install linear-gradient
     참고한 강의: expo공식사이트 참조
 
 
