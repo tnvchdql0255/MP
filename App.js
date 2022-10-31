@@ -8,6 +8,7 @@ import { initializeApp } from "firebase/app";
 import LoginScreen from "./comp/LoginMenu";
 import MainMenu from "./comp/MainMenu";
 import Register from "./comp/Register";
+import Question1 from "./comp/Question1";
 
 const Stack = createNativeStackNavigator(); //네비게이션 스택 생성
 
@@ -40,6 +41,10 @@ export default function App() {
           children={({ navigation }) => (
             <Register auth={auth} navigation={navigation}></Register>
           )}
+        ></Stack.Screen>
+        <Stack.Screen
+          name="Question1"
+          component={Question1}
         ></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

@@ -4,7 +4,9 @@ export const firebaseConfig = {
   projectId: "fbpjct-371d7",
   storageBucket: "fbpjct-371d7.appspot.com",
   messagingSenderId: "62047288190",
-  appId: "1:62047288190:web:b36df171c5bb1afec1912f",
+  appId: "1:62047288190:web:81a18e39b9eeecd8c1912f",
+  measurementId: "G-SXYXE4HKT6"
 };
+
 
 // Initialize Firebase

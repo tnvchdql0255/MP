@@ -21,3 +21,7 @@ node 버전:16.17.0
                ++npm install react-native-root-toast  //화면에 작게뜨는 메시지같은거
 필수 파일: root 디렉토리에 metro.config.js 추가 (내용은 파일참조)
          +comp/firebaseConfig.js 필수
+
+22.10.31
+추가한 사람: 심규대
+확장 라이브러리: ++npm i react-native-bouncy-checkbox --save    //checkbox
