@@ -1,0 +1,11 @@
+npm 버전: 8.19.0
+node 버전:16.17.0
+
+--FOR DB CRUD(create, read, update, delete)--
+    ++npm install firebase
+    필수 파일: root 디렉토리에 metro.config.js 추가 (내용은 파일참조)
+                +comp/firebaseConfig.js 필수
+--앱 페이지이동(네비게이션)--
+    ++npm install @react-navigation/native
+    ++npm install @react-navigation/native-stack
+
