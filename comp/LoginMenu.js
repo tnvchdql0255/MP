@@ -45,7 +45,7 @@ export default function LoginScreen(props) {
       <Text style={styles.textStyle}>Welcome to online study!</Text>
       <TextInputMethod
         inputData={IDinputData}
-        onChangeText={onchangeID}
+        onChangeText={onChangeID}
         secureTextEntry={false}
         placeholder="id"
       ></TextInputMethod>
