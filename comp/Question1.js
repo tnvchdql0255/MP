@@ -1,5 +1,5 @@
 import { View, Image, StyleSheet } from "react-native";
-let imagePath1 = require('../assets/Q1.png');
+//let imagePath1 = require('../assets/Q1.png');
 
 export default function Question1(props) {
     return (

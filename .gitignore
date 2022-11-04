@@ -14,5 +14,8 @@ package.json
 babel.config.js
 yarn.lock
 .expo-shared/
+
+babel.config.js
+
 # macOS
 .DS_Store

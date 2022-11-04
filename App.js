@@ -5,16 +5,20 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { getAuth } from "firebase/auth";
 import { firebaseConfig } from "./comp/firebaseConfig";
 import { initializeApp } from "firebase/app";
+import { firebase_DB } from "./comp/firebase_DB";
 import LoginScreen from "./comp/LoginMenu";
 import MainMenu from "./comp/MainMenu";
 import Register from "./comp/Register";
-import Question1 from "./comp/Question1";
+import { getFirestore } from "firebase/firestore";
 
 const Stack = createNativeStackNavigator(); //네비게이션 스택 생성
 
 export default function App() {
+  //const app_DB = initializeApp(firebase_DB);
+
   const app = initializeApp(firebaseConfig); //파이어베이스 컨픽
   let auth = getAuth(app); //auth를 필요한 컴포넌트한테 넘기는 용
+  const db = getFirestore(app);
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -35,17 +39,17 @@ export default function App() {
             <LoginScreen auth={auth} navigation={navigation}></LoginScreen>
           )}
         ></Stack.Screen>
-        <Stack.Screen name="MainMenu" component={MainMenu}></Stack.Screen>
+        <Stack.Screen name="MainMenu" 
+          children={({ navigation }) => (
+            <MainMenu db={db} navigation={navigation}></MainMenu>
+          )}></Stack.Screen>
         <Stack.Screen
           name="Register"
           children={({ navigation }) => (
             <Register auth={auth} navigation={navigation}></Register>
           )}
         ></Stack.Screen>
-        <Stack.Screen
-          name="Question1"
-          component={Question1}
-        ></Stack.Screen>
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
