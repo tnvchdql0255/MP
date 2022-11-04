@@ -9,4 +9,7 @@ node 버전:16.17.0
     ++npm install @react-navigation/native
     ++npm install @react-navigation/native-stack
 
-//
+##필수는 아님##
+--웹에서 프로젝트 실행하기--
+    ++npx expo install react-native-web@~0.18.7 react-dom@18.0.0 @expo/webpack-config@^0.17.0
+
