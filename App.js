@@ -5,9 +5,14 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { getAuth } from "firebase/auth";
 import { firebaseConfig } from "./comp/firebaseConfig";
 import { initializeApp } from "firebase/app";
+// import { firebase_DB } from "./comp/firebase_DB";
+// import { getFirestore } from "firebase/firestore";
 import LoginScreen from "./comp/LoginMenu";
 import MainMenu from "./comp/MainMenu";
 import Register from "./comp/Register";
+import QuizScreen from "./comp/QuizScreen";
+import InputSol from "./comp/InputSol";
+
 
 const Stack = createNativeStackNavigator(); //네비게이션 스택 생성
 
@@ -40,6 +45,18 @@ export default function App() {
           name="Register"
           children={({ navigation }) => (
             <Register auth={auth} navigation={navigation}></Register>
+          )}
+        ></Stack.Screen>
+        <Stack.Screen
+          name="QuizScreen"
+          children={({ navigation }) => (
+            <QuizScreen auth={auth} navigation={navigation}></QuizScreen>
+          )}
+        />
+        <Stack.Screen
+          name="InputSol"
+          children={({ navigation }) => (
+            <InputSol auth={auth} navigation={navigation}></InputSol>
           )}
         ></Stack.Screen>
       </Stack.Navigator>

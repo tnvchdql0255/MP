@@ -6,7 +6,7 @@ export default function MainMenu(props) {
       <Text>This is MainMenu! Yeah!</Text>
       <Button
         title="GotoLoginScreen"
-        onPress={() => props.navigation.navigate("LoginScreen")}
+        onPress={() => props.navigation.navigate("QuizScreen")}
       ></Button>
     </View>
   );
