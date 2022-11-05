@@ -16,3 +16,4 @@ yarn.lock
 .expo-shared/
 # macOS
 .DS_Store
+import.js
