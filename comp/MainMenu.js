@@ -34,34 +34,10 @@ export default function MainMenu({ navigation, route }) {
     }
   }
   return (
-    <ScrollView>
     <View style={styles.container}>
-      <Button
-        title="b"
-        onPress={read}
-      ></Button>
-      <View style={styles.questionView1}>
-        <TouchableOpacity>
-          <Text>Question 1    </Text>
-          
-        </TouchableOpacity>
-        <BouncyCheckbox
-          style={styles.checkbox}
-          size={25}
-          fillColor="orange"
-          unfillColor="#FFFFFF"
-          text="Clear"
-        />
-      </View>
-
-      <Button
-        title="GotoLoginScreen"
-        onPress={() => props.navigation.navigate("LoginScreen")}
-      ></Button>
       <Text>This is MainMenu! Yeah!</Text>
       <Button title="GET ID" onPress={isIdHasQuestionData}></Button>
     </View>
-    </ScrollView>
   );
 }
 
@@ -72,11 +48,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  questionView1:{
-    flex: 2,
-    alignItems: "center",
-    flexDirection: "row", //좌 -> 우로 생성
-  },
-  
-  },
-);
+});
