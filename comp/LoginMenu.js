@@ -1,27 +1,26 @@
 import { Text, View, StyleSheet, Button, TextInput } from "react-native";
 import { useState } from "react";
 import TextInputMethod from "./TextInput";
-import { LinearGradient } from "expo-linear-gradient"; //npx expo install expo-linear-gradient
+import { LinearGradient } from "expo-linear-gradient";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 import Toast from "react-native-root-toast";
 
 export default function LoginScreen(props) {
   const auth = props.auth;
-  const [IDinputData, setIDInputData] = useState("");
-  const [PWinputData, setPWInputData] = useState("");
+  const [IDinputData, setIDInputData] = useState("lim1@test.com");
+  const [PWinputData, setPWInputData] = useState("000000");
 
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, IDinputData, PWinputData)
       .then((userCredentials) => {
-        const user = userCredentials.user;
-        Toast.show("환영합니다", {
+        Toast.show("welcome", {
           duration: Toast.durations.SHORT,
           position: Toast.positions.BOTTOM,
           animation: false,
           delay: 0,
         });
-        props.navigation.navigate("MainMenu");
+        props.navigation.navigate("MainMenu", { id: IDinputData }); //send idData to mainMenu
       })
       .catch((error) => {
         alert("로그인실패");
@@ -45,7 +44,7 @@ export default function LoginScreen(props) {
       <Text style={styles.textStyle}>Welcome to online study!</Text>
       <TextInputMethod
         inputData={IDinputData}
-        onChangeText={onchangeID}
+        onChangeText={onChangeID}
         secureTextEntry={false}
         placeholder="id"
       ></TextInputMethod>
