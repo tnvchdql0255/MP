@@ -19,6 +19,8 @@ export default function App() {
   const app = initializeApp(firebaseConfig); //파이어베이스 컨픽
   let auth = getAuth(app); //auth를 필요한 컴포넌트한테 넘기는 용
   const db = getFirestore(app);
+
+  
   return (
     <NavigationContainer>
       <Stack.Navigator
