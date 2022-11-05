@@ -1,27 +1,38 @@
-import { 
-  Text, 
-  View, 
-  StyleSheet, 
-  Button, 
-  Image, 
-  ScrollView, 
-  TouchableOpacity } from "react-native";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { useState } from "react";
-import {doc, setDoc, getDoc, getFirestore } from "firebase/firestore";
+import { Text, View, StyleSheet, Button } from "react-native";
+import Toast from "react-native-root-toast";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+import { firebaseConfig } from "./firebaseConfig";
+import { initializeApp } from "firebase/app";
 
-
-export default function MainMenu(props) {
-  const db = props.db;
-  async function read() {
-    const docData = doc(db, "Question", "Q1");
-    const docSnap = await getDoc(docData);
-    if(docSnap.exists()) {
-      alert(docSnap.data());
+export default function MainMenu({ navigation, route }) {
+  const mainApp = initializeApp(firebaseConfig);
+  const db = getFirestore(mainApp);
+  let loginData = JSON.parse(JSON.stringify(route)); //JSON데이터 추출 1단계
+  loginData = loginData.params.id;
+  console.log(loginData);
+  async function isIdHasQuestionData() {
+    console.log(loginData);
+    if (loginData == null) {
+      alert("ID Data corrupted");
+    } else {
+      const docR = doc(db, "UserStatus", loginData);
+      const docSnap = await getDoc(docR);
+      if (docSnap.exists()) {
+        console.log("exist");
+      } else {
+        setDoc(docR, {
+          Q1: true,
+        })
+          .then(() => {
+            alert("New UserData sub");
+          })
+          .catch(() => {
+            alert("something went wrong");
+          });
+      }
     }
-
-  } 
-  console.log(props);
+  }
   return (
     <ScrollView>
     <View style={styles.container}>
@@ -47,6 +58,8 @@ export default function MainMenu(props) {
         title="GotoLoginScreen"
         onPress={() => props.navigation.navigate("LoginScreen")}
       ></Button>
+      <Text>This is MainMenu! Yeah!</Text>
+      <Button title="GET ID" onPress={isIdHasQuestionData}></Button>
     </View>
     </ScrollView>
   );
