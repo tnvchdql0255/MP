@@ -2,17 +2,15 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { getAuth } from "firebase/auth";
-import { firebaseConfig } from "./comp/firebaseConfig";
-import { initializeApp } from "firebase/app";
 import LoginScreen from "./comp/LoginMenu";
 import MainMenu from "./comp/MainMenu";
 import Register from "./comp/Register";
-import { getFirestore } from "firebase/firestore";
+import { auth } from "./comp/firebaseConfig";
 
 const Stack = createNativeStackNavigator(); //네비게이션 스택 생성
 
 export default function App() {
+<<<<<<< HEAD
   const app = initializeApp(firebaseConfig); //파이어베이스 컨픽
   const db = getFirestore(app);
   //firebase.initializeApp(firebaseConfig);
@@ -26,6 +24,8 @@ export default function App() {
     console.log(q_num);
   }
 
+=======
+>>>>>>> 45d36aeab59b3a8aa172a7443bf9a9d19462117f
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -50,7 +50,7 @@ export default function App() {
         <Stack.Screen
           name="MainMenu"
           component={MainMenu}
-          initialParams={{ id: null }} //Mainmenu에는 auth 대신 db 를 넘김
+          initialParams={{ id: null }} //id값은 초기에 null임
         ></Stack.Screen>
         <Stack.Screen
           name="Register"
