@@ -4,10 +4,9 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { firebaseConfig } from "./firebaseConfig";
 import { initializeApp } from "firebase/app";
+import { db } from "./firebaseConfig";
 
 export default function MainMenu({ navigation, route }) {
-  const mainApp = initializeApp(firebaseConfig);
-  const db = getFirestore(mainApp);
   let loginData = JSON.parse(JSON.stringify(route)); //JSON데이터 추출 1단계
   loginData = loginData.params.id;
   console.log(loginData);

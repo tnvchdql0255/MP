@@ -1,3 +1,7 @@
+import { initializeFirestore } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+
 export const firebaseConfig = {
   apiKey: "AIzaSyDESx0FHm18zHNocRJfZuE4Kweby_xXIGI",
   authDomain: "fbpjct-371d7.firebaseapp.com",
@@ -7,4 +11,9 @@ export const firebaseConfig = {
   appId: "1:62047288190:web:b36df171c5bb1afec1912f",
 };
 
-// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = initializeFirestore(app, {
+  experimentalAutoDetectLongPolling: true,
+});
+const auth = getAuth(app);
+export { db, auth };
