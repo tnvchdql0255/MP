@@ -16,6 +16,14 @@ export default function App() {
   const app = initializeApp(firebaseConfig); //파이어베이스 컨픽
   let auth = getAuth(app); //auth를 필요한 컴포넌트한테 넘기는 용
   //const db = getFirestore(app);
+  async function read() { // 파이어베이스 읽어오는 함수
+    const q = query(collection(db, "Question"));
+    const querySnapshot = await getDocs(q);
+    const parsedData = JSON.parse(JSON.stringify(querySnapshot));
+    const q_num = parsedData._snapshot.docChanges.length; // 문제 수 가져오는 부분
+    console.log(q_num);
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator
