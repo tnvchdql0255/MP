@@ -10,22 +10,12 @@ import { auth } from "./comp/firebaseConfig";
 const Stack = createNativeStackNavigator(); //네비게이션 스택 생성
 
 export default function App() {
-<<<<<<< HEAD
-  const app = initializeApp(firebaseConfig); //파이어베이스 컨픽
-  const db = getFirestore(app);
-  //firebase.initializeApp(firebaseConfig);
-  let auth = getAuth(app); //auth를 필요한 컴포넌트한테 넘기는 용
+  //const app = initializeApp(firebaseConfig); //파이어베이스 컨픽
   //const db = getFirestore(app);
-  async function read() { // 파이어베이스 읽어오는 함수
-    const q = query(collection(db, "Question"));
-    const querySnapshot = await getDocs(q);
-    const parsedData = JSON.parse(JSON.stringify(querySnapshot));
-    const q_num = parsedData._snapshot.docChanges.length; // 문제 수 가져오는 부분
-    console.log(q_num);
-  }
+  //firebase.initializeApp(firebaseConfig);
+  //let auth = getAuth(app); //auth를 필요한 컴포넌트한테 넘기는 용
+  //const db = getFirestore(app);
 
-=======
->>>>>>> 45d36aeab59b3a8aa172a7443bf9a9d19462117f
   return (
     <NavigationContainer>
       <Stack.Navigator
