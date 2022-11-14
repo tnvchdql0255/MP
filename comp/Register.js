@@ -38,6 +38,7 @@ export default function Register(props) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.welcome}>sign in</Text>
       <TextInputMethod
         inputData={ID}
         onChangeText={onChangeID}
@@ -48,7 +49,7 @@ export default function Register(props) {
         inputData={PW.PW}
         onChangeText={onChangePW}
         secureTextEntry={true}
-        placeholder="PASSWORD"
+        placeholder="Password"
       ></TextInputMethod>
       <TextInputMethod
         inputData={PW.PWCheck}
@@ -59,7 +60,7 @@ export default function Register(props) {
 
       <TouchableOpacity style={styles.button}>
         <Text style={styles.text} onPress={checkPW_isEqual}>
-          Go to login
+          Create
         </Text>
       </TouchableOpacity>
 
@@ -73,7 +74,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#D8DAEA",
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
+  },
+
+  welcome: {
+    // fontFamily: "",
+    fontSize: 45,
+    fontWeight: "bold",
+    // marginLeft: 40,
+    marginTop: 70,
+    paddingBottom: 50,
   },
 
   button: {
