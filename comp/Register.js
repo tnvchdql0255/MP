@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Button } from "react-native";
+import { View, Button, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import TextInputMethod from "./TextInput";
 
@@ -37,26 +37,57 @@ export default function Register(props) {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <TextInputMethod
         inputData={ID}
         onChangeText={onChangeID}
         secureTextEntry={false}
-        placeholder="아이디"
+        placeholder="ID(Email)"
       ></TextInputMethod>
       <TextInputMethod
         inputData={PW.PW}
         onChangeText={onChangePW}
         secureTextEntry={true}
-        placeholder="패스워드"
+        placeholder="PASSWORD"
       ></TextInputMethod>
       <TextInputMethod
         inputData={PW.PWCheck}
         onChangeText={onChangePWC}
         secureTextEntry={true}
-        placeholder="패스워드 재입력"
+        placeholder="RePassword"
       ></TextInputMethod>
-      <Button title="확인" onPress={checkPW_isEqual}></Button>
+
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.text} onPress={checkPW_isEqual}>
+          Go to login
+        </Text>
+      </TouchableOpacity>
+
+      {/* <Button title="Go to login" onPress={checkPW_isEqual}></Button> */}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#D8DAEA",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  button: {
+    width: "75%",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    padding: 13,
+    margin: 12,
+    borderRadius: 30,
+  },
+
+  text: {
+    color: "#000000",
+    fontSize: 20,
+    // fontStyle: "bold"
+  },
+});

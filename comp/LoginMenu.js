@@ -1,4 +1,11 @@
-import { Text, View, StyleSheet, Button, TextInput } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import { useState } from "react";
 import TextInputMethod from "./TextInput";
 import { LinearGradient } from "expo-linear-gradient";
@@ -47,14 +54,36 @@ export default function LoginScreen(props) {
         secureTextEntry={true}
         placeholder="PASSWORD"
       ></TextInputMethod>
-      <Button title="로그인" onPress={() => handleLogin()}></Button>
-      <Button
-        title="회원 가입"
+
+      <TouchableOpacity
+      style={styles.button}>
+        <Text
+        style={styles.text}
+        onPress={() => handleLogin()}>
+          Login
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+      style={styles.button}
+      >
+        <Text
+          style={styles.text}
+          onPress={() => props.navigation.navigate("Register")}
+        >
+          Register
+        </Text>
+      </TouchableOpacity>
+
+      {/* <Button style = {styles.button} title="Login" onPress={() => handleLogin()}></Button>
+      <Button style = {styles.button}
+        title="Register"
         onPress={() => props.navigation.navigate("Register")}
-      ></Button>
+      ></Button> */}
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -72,11 +101,18 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
   },
 
-  // background: {
-  //   // position: "absolute",
-  //   left: 0,
-  //   right: 0,
-  //   top: 0,
-  //   height: 300,
-  // },
+  button: {
+    width: "75%",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    padding: 13,
+    margin: 12,
+    borderRadius: 30,
+  },
+
+  text: {
+    color: "#000000",
+    fontSize: 20,
+    // fontStyle: "bold"
+  }
 });
