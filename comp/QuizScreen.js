@@ -2,18 +2,25 @@ import React, { useState } from "react";
 import { Text, View,  StyleSheet, BackHandler, TouchableOpacity, ScrollView, Button } from "react-native";
 import { navigation } from "@react-navigation/native";
 import InputSol from "./InputSol";
-import { Doc,  setDoc, addDoc, collection, firestore, collection} from 'firebase/firestore';
+import { Doc,  setDoc, addDoc, firestore, Collection} from 'firebase/firestore';
+import { link } from 'react-native';
 
 const QuizScreen = (props) => {
-  const [quiz, setQuiz] = useState("");
-  const questionCollection = firestore().collection('Question') // firebase에서 question DB 불러오기
+  const [quiz, setQuiz] = useState("")
 
-  
+  function Read() {
+    const [question, setQuestion] = useState()
+    const questionCollection = firestore().collection('Question') // firebase에서 question DB 불러오기
+
+    const callRead = () => {
+      
+    }
+  }
 
   return (
     <View>
       <ScrollView>
-        <Text style={styles.quizText}> {} </Text>
+        <Text style={styles.quizText}>{Read}</Text>
         
         <TouchableOpacity // 버튼 대신 TouchableOpacity 사용
           style={styles.solButton}

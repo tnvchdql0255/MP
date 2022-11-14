@@ -13,7 +13,6 @@ import Register from "./comp/Register";
 import QuizScreen from "./comp/QuizScreen";
 import InputSol from "./comp/InputSol";
 
-
 const Stack = createNativeStackNavigator(); //네비게이션 스택 생성
 
 export default function App() {
@@ -25,7 +24,7 @@ export default function App() {
         initialRouteName="LoginScreen"
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#ffbf00",
+            backgroundColor: "#D8DAEA",
           },
           headerTintColor: "#fff", //헤더 텍스트 색상
           headerTitleStyle: {
@@ -70,5 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    fontFamily: "KoPubWorld Dotum Medium",
+    // fontSize:
   },
 });

@@ -16,10 +16,19 @@ export default function TextInputMethod(props) {
 }
 const styles = StyleSheet.create({
   inputStyle: {
+    // width: "80%",
+    // fontSize: 20,
+    // borderBottomColor: "#050505",
+    // borderBottomWidth: 1,
+    // margin: 8,
     width: "80%",
+    height: 60,
+    paddingHorizontal: 10,
+    opacity: 0.6,
+    backgroundColor: "#ffffff",
+    borderRadius: 10,
+    marginVertical: 20,
     fontSize: 20,
-    borderBottomColor: "#050505",
-    borderBottomWidth: 1,
-    margin: 8,
+    margin: 10,
   },
 });
