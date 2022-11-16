@@ -7,13 +7,14 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useState } from "react";
-import TextInputMethod from "./TextInput";
+import TextInputMethod from "./Design";
 import { LinearGradient } from "expo-linear-gradient";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import Toast from "react-native-root-toast";
 
 export default function LoginScreen(props) {
   const auth = props.auth;
-  const [IDinputData, setIDInputData] = useState("hee@test.com");
+  const [IDinputData, setIDInputData] = useState("lim1@test.com");
   const [PWinputData, setPWInputData] = useState("000000");
 
   const handleLogin = () => {
@@ -28,7 +29,7 @@ export default function LoginScreen(props) {
         props.navigation.navigate("MainMenu", { id: IDinputData }); // send idData to mainMenu
       })
       .catch((error) => {
-        alert("로그인실패");
+        alert("Login failure");
       });
   };
 
@@ -48,6 +49,7 @@ export default function LoginScreen(props) {
         secureTextEntry={false}
         placeholder="ID"
       ></TextInputMethod>
+
       <TextInputMethod
         inputData={PWinputData}
         onChangeText={onChangePW}
@@ -55,22 +57,16 @@ export default function LoginScreen(props) {
         placeholder="PASSWORD"
       ></TextInputMethod>
 
-      <TouchableOpacity
-      style={styles.button}>
-        <Text
-        style={styles.text}
-        onPress={() => handleLogin()}>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.text} onPress={() => handleLogin()}>
           Login
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-      style={styles.button}
-      >
+      <TouchableOpacity style={styles.button}>
         <Text
           style={styles.text}
-          onPress={() => props.navigation.navigate("Register")}
-        >
+          onPress={() => props.navigation.navigate("Register")}>
           Register
         </Text>
       </TouchableOpacity>
@@ -114,5 +110,5 @@ const styles = StyleSheet.create({
     color: "#000000",
     fontSize: 20,
     // fontStyle: "bold"
-  }
+  },
 });

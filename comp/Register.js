@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Button, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import TextInputMethod from "./TextInput";
+import TextInputMethod from "./Design";
 
 export default function Register(props) {
   const auth = props.auth;
@@ -12,7 +12,7 @@ export default function Register(props) {
   const handleCreateAccount = () => {
     createUserWithEmailAndPassword(auth, ID, PW.pw)
       .then(() => {
-        alert("계정생성됨");
+        alert("Create ID !");
       })
       .catch((error) => {
         alert(error);
@@ -32,7 +32,7 @@ export default function Register(props) {
     if (PW.pw == PW.pwCheck) {
       handleCreateAccount();
     } else {
-      alert("비밀번호가 일치하지 않습니다");
+      alert("The passwords don't match");
     }
   }
 
@@ -60,7 +60,7 @@ export default function Register(props) {
 
       <TouchableOpacity style={styles.button}>
         <Text style={styles.text} onPress={checkPW_isEqual}>
-          Create
+          Create ID
         </Text>
       </TouchableOpacity>
 

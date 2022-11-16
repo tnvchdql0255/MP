@@ -22,7 +22,7 @@ const QuizScreen = (props) => {
       <ScrollView>
         <Text style={styles.quizText}>{Read}</Text>
         
-        <TouchableOpacity // 버튼 대신 TouchableOpacity 사용
+        <TouchableOpacity
           style={styles.solButton}
           onPress={() => {
             props.navigation.navigate("InputSol") // 풀이 1 선택하면 풀이과정 입력하는 새로운 component로 이동

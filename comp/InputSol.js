@@ -6,27 +6,19 @@ const InputSol = (props) => {
   const [solInput, setSolInput] = useState("");
 
   return (
-    <View style={styles.contaner}>
-      {/* 선택한 풀이 */}
+    <View style={styles.container}>
       <Text style={styles.solPick}>
         Write an equation to solve the problem.
       </Text>
-
-      {/* 풀이 BOX */}
       <TextInput style={styles.solBox}></TextInput>
-
-      {/* 풀이 Text */}
       <TouchableOpacity
         style={styles.solInput}
         onPress={() => {
           props.navigation.navigate("QuizScreen");
         }}
       ></TouchableOpacity>
-
-      {/* 제출 Button */}
       <TouchableOpacity style={styles.save}>
-        {/* 버튼 이름 영어로 */}
-        <Text style={styles.solInput}>제출</Text>
+        <Text style={styles.solInput}>Submit</Text>
       </TouchableOpacity>
     </View>
   );
