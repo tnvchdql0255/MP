@@ -1,4 +1,4 @@
-import { initializeFirestore } from "firebase/firestore";
+import { getFirestore, initializeFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
@@ -15,5 +15,6 @@ const app = initializeApp(firebaseConfig);
 const db = initializeFirestore(app, {
   experimentalAutoDetectLongPolling: true,
 });
+const dbio = getFirestore(app);
 const auth = getAuth(app);
-export { db, auth };
+export { db, auth, dbio };

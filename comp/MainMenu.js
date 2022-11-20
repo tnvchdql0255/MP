@@ -37,7 +37,6 @@ export default function MainMenu({ navigation, route }) {
   }, []);
 
   async function isIdHasQuestionData() {
-    console.log(loginData);
     if (loginData == null) {
       alert("ID Data corrupted");
     } else {
@@ -47,7 +46,8 @@ export default function MainMenu({ navigation, route }) {
         console.log("exist");
       } else {
         setDoc(docR, {
-          Q1: true,
+          uID: loginData,
+          Q1: [0, 0, 0, true],
         })
           .then(() => {
             alert("New UserData sub");
@@ -70,18 +70,34 @@ export default function MainMenu({ navigation, route }) {
     var questionIndexList = Array.from({ length: parsedQnum }, (v, i) => i + 1); // v: value, i: index
     setQuestionIndex([...questionIndex, ...questionIndexList]);
   }
-  async function readSpec() {
-    const q = query(collection(db, "Question"), where("Q1", "*Prompt*"));
+
+  async function readUserStat() {
+    // 파이어베이스 읽어오는 함수
+    const q = query(collection(db, "UserStatus"));
     const querySnapshot = await getDocs(q);
+    const parsedData = JSON.parse(JSON.stringify(querySnapshot));
+    var userList = parsedData._snapshot.docChanges; // 문제 수 가져오는 부분
+    for (let i = 0; i < userList.length; i++) {
+      if (
+        userList[i].doc.data.value.mapValue.fields.uID.stringValue == loginData
+      ) {
+        console.log(userList[i].doc.data.value.mapValue.fields.Q1);
+      }
+    }
   }
   return (
     <View style={styles.container1}>
       <ScrollView>
+        <Button title="get" onPress={readUserStat}></Button>
         {questionIndex.map((item, idx) => (
           <TouchableOpacity
             key={idx}
             onPress={() =>
-              navigation.navigate("QuizScreen", { questionData, index: idx })
+              navigation.navigate("QuizScreen", {
+                questionData,
+                index: idx,
+                id: loginData,
+              })
             }
           >
             <Text style={styles.questionLable}>{"Question " + item}</Text>
