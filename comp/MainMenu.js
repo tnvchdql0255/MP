@@ -22,11 +22,15 @@ import { initializeApp } from "firebase/app";
 import { db } from "./firebaseConfig";
 //import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useEffect, useState } from "react";
+import useStore from "./globalData";
 
 export default function MainMenu({ navigation, route }) {
   const app = initializeApp(firebaseConfig);
   const [questionIndex, setQuestionIndex] = useState([]);
   const [questionData, setQuestionData] = useState();
+  const data = useStore((state) => state.data);
+  const addData = useStore((state) => state.addData);
+  const setData = useStore((state) => state.setData);
   let loginData = JSON.parse(JSON.stringify(route)); //JSON데이터 추출 1단계
   loginData = loginData.params.id;
   console.log(loginData);
@@ -47,7 +51,7 @@ export default function MainMenu({ navigation, route }) {
       } else {
         setDoc(docR, {
           uID: loginData,
-          Q1: [0, 0, 0, true],
+          QuestionStatus: 0,
         })
           .then(() => {
             alert("New UserData sub");
@@ -77,11 +81,21 @@ export default function MainMenu({ navigation, route }) {
     const querySnapshot = await getDocs(q);
     const parsedData = JSON.parse(JSON.stringify(querySnapshot));
     var userList = parsedData._snapshot.docChanges; // 문제 수 가져오는 부분
+    console.log(userList);
     for (let i = 0; i < userList.length; i++) {
       if (
         userList[i].doc.data.value.mapValue.fields.uID.stringValue == loginData
       ) {
-        console.log(userList[i].doc.data.value.mapValue.fields.Q1);
+        console.log(
+          userList[i].doc.data.value.mapValue.fields.QuestionStatus.integerValue
+        );
+        setData(
+          Number(
+            userList[i].doc.data.value.mapValue.fields.QuestionStatus
+              .integerValue
+          )
+        );
+        break;
       }
     }
   }

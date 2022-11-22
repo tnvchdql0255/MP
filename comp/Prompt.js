@@ -8,30 +8,32 @@ import {
   collection,
   getDocs,
   doc,
+  getDoc,
 } from "firebase/firestore";
 import { dbio, db } from "./firebaseConfig";
+import useStore from "./globalData";
 
 export default function Prompt({ navigation, route }) {
+  console.log(route.params.confirmation);
   var [currentIndex, setCurrentIndex] = useState(0); //prompt index
   var [chance, setChance] = useState(2);
+  const currentStatus = useStore((state) => state.data);
+  const addData = useStore((state) => state.addData);
   var id = route.params.id;
-  var QIndex = route.params.Qindex;
   const [prompt, setPrompt] = useState(
     route.params.value.PromptData[currentIndex].stringValue
   );
   const [input, setInput] = useState("");
   var answer = route.params.value.PromptAnswer;
-  var str = "hello";
+
   function addPoint() {
-    setDoc(
-      doc(db, "UserStatus", id),
-      {
-        str: [currentIndex, QIndex, true],
-      },
-      { merge: true }
-    )
+    addData(1);
+    setDoc(doc(db, "UserStatus", id), {
+      QuestionStatus: currentStatus,
+      uID: id,
+    })
       .then(() => {
-        alert("New Question submitted");
+        alert("point added");
       })
       .catch((error) => {
         alert("failed to upload:" + { error });
@@ -58,7 +60,7 @@ export default function Prompt({ navigation, route }) {
       setChance(2); //찬스를 다시 2로 초기화
       alert("goto next");
     } else {
-      alert("this is last prompt");
+      alert(route.params.confirmation);
       navigation.goBack(); //back to QuizScreen
     }
   }

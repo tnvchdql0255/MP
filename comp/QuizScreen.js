@@ -7,7 +7,9 @@ import {
   TouchableOpacity,
   ScrollView,
   Button,
+  Modal,
 } from "react-native";
+import ModalContent from "./ModalContent";
 
 const QuizScreen = ({ navigation, route }) => {
   var questionData = route.params.questionData;
@@ -15,6 +17,7 @@ const QuizScreen = ({ navigation, route }) => {
   const index = route.params.index; //get question index (0~7)
   questionData = questionData[index].doc.data.value.mapValue.fields; //get Q data by q index
   console.log(questionData);
+  var openEndedQ = questionData.open_ended_question.stringValue;
   var mainQuestion = questionData.Main_question.stringValue;
   var Strategy_A = questionData.Strategy_A.stringValue;
   var Strategy_B = questionData.Strategy_B.stringValue;
@@ -23,11 +26,22 @@ const QuizScreen = ({ navigation, route }) => {
   const [disable_A, setDisable_A] = useState(false);
   const [disable_B, setDisable_B] = useState(false);
   const [disable_C, setDisable_C] = useState(false);
-
+  const [modalVisable, setModalVisable] = useState(true);
   //Strategy 버튼 클릭 가능여부 제어 변수
 
+  function modalOff() {
+    setModalVisable(false);
+  }
   return (
     <View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisable}
+        onRequestClose={() => setModalVisable(false)}
+      >
+        <ModalContent modalOff={modalOff} oeq={openEndedQ}></ModalContent>
+      </Modal>
       <ScrollView>
         <Text style={styles.quizText}> {mainQuestion} </Text>
         <TouchableOpacity // 버튼 대신 TouchableOpacity 사용
@@ -38,7 +52,13 @@ const QuizScreen = ({ navigation, route }) => {
           }}
           onPress={() => {
             let value = getPromptData_A();
-            navigation.navigate("Prompt", { value, id: id, Qindex: index }); // 풀이 1 선택하면 풀이과정 입력하는 새로운 component로 이동
+            let conf = getConfirmation("A");
+            navigation.navigate("Prompt", {
+              value,
+              id: id,
+              Qindex: index,
+              confirmation: conf,
+            }); // 풀이 1 선택하면 풀이과정 입력하는 새로운 component로 이동
             setDisable_A(true); //한번 프롬프트에 접근하면 다시 들어갈 수 없음
           }}
         >
@@ -52,7 +72,13 @@ const QuizScreen = ({ navigation, route }) => {
           }}
           onPress={() => {
             let value = getPromptData_B();
-            navigation.navigate("Prompt", { value, id: id, Qindex: index });
+            let conf = getConfirmation("B");
+            navigation.navigate("Prompt", {
+              value,
+              id: id,
+              Qindex: index,
+              confirmation: conf,
+            });
             setDisable_B(true);
           }}
         >
@@ -66,7 +92,13 @@ const QuizScreen = ({ navigation, route }) => {
           }}
           onPress={() => {
             let value = getPromptData_C();
-            navigation.navigate("Prompt", { value, id: id, Qindex: index });
+            let conf = getConfirmation("C");
+            navigation.navigate("Prompt", {
+              value,
+              id: id,
+              Qindex: index,
+              confirmation: conf,
+            });
             setDisable_C(true);
           }}
         >
@@ -81,6 +113,18 @@ const QuizScreen = ({ navigation, route }) => {
     console.log(PromptData[0].stringValue);
     console.log(PromptAnswer[0].stringValue);
     return { PromptData, PromptAnswer };
+  }
+  function getConfirmation(selector) {
+    if (selector == "A") {
+      var confirmation = questionData.Strategy_A_confirmation.stringValue;
+    }
+    if (selector == "B") {
+      var confirmation = questionData.Strategy_B_confirmation.stringValue;
+    }
+    if (selector == "C") {
+      var confirmation = questionData.Strategy_C_confirmation.stringValue;
+    }
+    return confirmation;
   }
 
   function getPromptData_B() {
