@@ -37,6 +37,7 @@ export default function MainMenu({ navigation, route }) {
 
   useEffect(() => {
     isIdHasQuestionData();
+    readUserStat();
     read();
   }, []);
 
@@ -102,7 +103,6 @@ export default function MainMenu({ navigation, route }) {
   return (
     <View style={styles.container1}>
       <ScrollView>
-        <Button title="get" onPress={readUserStat}></Button>
         {questionIndex.map((item, idx) => (
           <TouchableOpacity
             key={idx}

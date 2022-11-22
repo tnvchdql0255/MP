@@ -27,13 +27,15 @@ export default function Prompt({ navigation, route }) {
   var answer = route.params.value.PromptAnswer;
 
   function addPoint() {
-    addData(1);
+    addData();
+    var point = currentStatus;
     setDoc(doc(db, "UserStatus", id), {
-      QuestionStatus: currentStatus,
+      QuestionStatus: point,
       uID: id,
     })
       .then(() => {
         alert("point added");
+        console.log(currentStatus);
       })
       .catch((error) => {
         alert("failed to upload:" + { error });
