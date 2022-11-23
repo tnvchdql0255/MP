@@ -24,8 +24,8 @@ const QuizScreen = ({ navigation, route }) => {
   var Strategy_C = questionData.Strategy_C.stringValue;
 
   const [disable_A, setDisable_A] = useState(false);
-  const [disable_B, setDisable_B] = useState(false);
-  const [disable_C, setDisable_C] = useState(false);
+  const [disable_B, setDisable_B] = useState(true);
+  const [disable_C, setDisable_C] = useState(true);
   const [modalVisable, setModalVisable] = useState(true);
   //Strategy 버튼 클릭 가능여부 제어 변수
 
@@ -59,7 +59,8 @@ const QuizScreen = ({ navigation, route }) => {
               Qindex: index,
               confirmation: conf,
             }); // 풀이 1 선택하면 풀이과정 입력하는 새로운 component로 이동
-            setDisable_A(true); //한번 프롬프트에 접근하면 다시 들어갈 수 없음
+            setDisable_A(true);
+            setDisable_B(false); //한번 프롬프트에 접근하면 다시 들어갈 수 없음
           }}
         >
           <Text style={styles.solText}>{Strategy_A}</Text>
@@ -80,6 +81,7 @@ const QuizScreen = ({ navigation, route }) => {
               confirmation: conf,
             });
             setDisable_B(true);
+            setDisable_C(false);
           }}
         >
           <Text style={styles.solText}>{Strategy_B}</Text>
