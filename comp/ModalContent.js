@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import TextInputMethod from "./TextInput";
+
 export default function ModalContent(props) {
   const [input, setInput] = useState();
   return (
