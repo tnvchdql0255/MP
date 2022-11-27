@@ -2,7 +2,6 @@ import {
   Text,
   View,
   StyleSheet,
-  Button,
   ScrollView,
   TouchableOpacity,
 } from "react-native";
@@ -21,23 +20,26 @@ import { firebaseConfig } from "./firebaseConfig";
 import { initializeApp } from "firebase/app";
 import { db } from "./firebaseConfig";
 import { useEffect, useState } from "react";
-import LoginScreen from "./LoginMenu";
+import useStore from "./globalData";
 
 export default function MainMenu({ navigation, route }) {
   const app = initializeApp(firebaseConfig);
   const [questionIndex, setQuestionIndex] = useState([]);
   const [questionData, setQuestionData] = useState();
+  const data = useStore((state) => state.data);
+  const addData = useStore((state) => state.addData);
+  const setData = useStore((state) => state.setData);
   let loginData = JSON.parse(JSON.stringify(route)); //JSON데이터 추출 1단계
   loginData = loginData.params.id;
   console.log(loginData);
 
   useEffect(() => {
     isIdHasQuestionData();
+    readUserStat();
     read();
   }, []);
 
   async function isIdHasQuestionData() {
-    console.log(loginData);
     if (loginData == null) {
       alert("ID Data corrupted");
     } else {
@@ -47,7 +49,8 @@ export default function MainMenu({ navigation, route }) {
         console.log("exist");
       } else {
         setDoc(docR, {
-          Q1: true,
+          uID: loginData,
+          QuestionStatus: 0,
         })
           .then(() => {
             alert("New UserData sub");
@@ -71,19 +74,48 @@ export default function MainMenu({ navigation, route }) {
     var questionIndexList = Array.from({ length: parsedQnum }, (v, i) => i + 1); // v: value, i: index
     setQuestionIndex([...questionIndex, ...questionIndexList]);
   }
-  async function readSpec() {
-    const q = query(collection(db, "Question"), where("Q1", "*Prompt*"));
+
+  async function readUserStat() {
+    // 파이어베이스 읽어오는 함수
+    const q = query(collection(db, "UserStatus"));
     const querySnapshot = await getDocs(q);
+    const parsedData = JSON.parse(JSON.stringify(querySnapshot));
+    var userList = parsedData._snapshot.docChanges; // 문제 수 가져오는 부분
+    console.log(userList);
+    for (let i = 0; i < userList.length; i++) {
+      if (
+        userList[i].doc.data.value.mapValue.fields.uID.stringValue == loginData
+      ) {
+        console.log(
+          userList[i].doc.data.value.mapValue.fields.QuestionStatus.integerValue
+        );
+        setData(
+          Number(
+            userList[i].doc.data.value.mapValue.fields.QuestionStatus
+              .integerValue
+          )
+        );
+        break;
+      }
+    }
   }
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text style = {styles.text}>Hi,{"\n"}Click on the question number!</Text>
+        <Text>{" "}</Text>
+        {/* 스크롤 숨기기 */}
+        <Text style={styles.text}>Hi,{"\n"}Click on the question number!</Text>
         {questionIndex.map((item, idx) => (
-          <TouchableOpacity style = {styles.button}
+          <TouchableOpacity
+            style={styles.button}
             key={idx}
             onPress={() =>
-              navigation.navigate("QuizScreen", { questionData, index: idx })
+              navigation.navigate("QuizScreen", {
+                questionData,
+                index: idx,
+                id: loginData,
+              })
             }
           >
             <Text style={styles.questionLable}>{"Question " + item}</Text>
@@ -105,15 +137,13 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    fontSize: 35,
+    fontSize: 34,
     fontWeight: "bold",
-    // marginLeft: 40,
     marginTop: 70,
     paddingBottom: 50,
   },
 
   button: {
-    // width: "75%",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
     padding: 13,
@@ -123,6 +153,6 @@ const styles = StyleSheet.create({
 
   questionLable: {
     color: "#000000",
-    fontSize: 20
+    fontSize: 20,
   },
 });

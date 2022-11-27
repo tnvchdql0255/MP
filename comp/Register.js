@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Button, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import TextInputMethod from "./Design";
+import TextInputMethod from "./TextInput";
 
 export default function Register(props) {
   const auth = props.auth;

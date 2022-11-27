@@ -1,86 +1,171 @@
 import React, { useState } from "react";
-import { Text, View,  StyleSheet, BackHandler, TouchableOpacity, ScrollView, Button } from "react-native";
-import { navigation } from "@react-navigation/native";
-import InputSol from "./InputSol";
-import { Doc,  setDoc, addDoc, firestore, Collection} from 'firebase/firestore';
-import { link } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  Modal,
+} from "react-native";
+import ModalContent from "./ModalContent";
 
-const QuizScreen = (props) => {
-  const [quiz, setQuiz] = useState("")
+const QuizScreen = ({ navigation, route }) => {
+  var questionData = route.params.questionData;
+  var id = route.params.id; //user Id (ex:abc@test.com)
+  const index = route.params.index; //get question index (0~7)
+  questionData = questionData[index].doc.data.value.mapValue.fields; //get Q data by q index
+  console.log(questionData);
+  var openEndedQ = questionData.open_ended_question.stringValue;
+  var mainQuestion = questionData.Main_question.stringValue;
+  var Strategy_A = questionData.Strategy_A.stringValue;
+  var Strategy_B = questionData.Strategy_B.stringValue;
+  var Strategy_C = questionData.Strategy_C.stringValue;
 
-  function Read() {
-    const [question, setQuestion] = useState()
-    const questionCollection = firestore().collection('Question') // firebase에서 question DB 불러오기
+  const [disable_A, setDisable_A] = useState(false);
+  const [disable_B, setDisable_B] = useState(true);
+  const [disable_C, setDisable_C] = useState(true);
+  const [modalVisable, setModalVisable] = useState(true);
+  //Strategy 버튼 클릭 가능여부 제어 변수
 
-    const callRead = () => {
-      
-    }
+  function modalOff() {
+    setModalVisable(false);
   }
-
   return (
-    <View>
+    <View style = {styles.container}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisable}
+        onRequestClose={() => setModalVisable(false)}
+      >
+        <ModalContent modalOff={modalOff} oeq={openEndedQ}></ModalContent>
+      </Modal>
       <ScrollView>
-        <Text style={styles.quizText}>{Read}</Text>
-        
-        <TouchableOpacity
-          style={styles.solButton}
+        <Text style={styles.Question}> {mainQuestion} </Text>
+        <TouchableOpacity // 버튼 대신 TouchableOpacity 사용
+          disabled={disable_A}
+          style={{
+            backgroundColor: disable_A ? "#B3B6C4" : "#FFFFFF",
+            ...styles.solButton,
+          }}
           onPress={() => {
-            props.navigation.navigate("InputSol") // 풀이 1 선택하면 풀이과정 입력하는 새로운 component로 이동
+            let value = getPromptData_A();
+            let conf = getConfirmation("A");
+            navigation.navigate("Prompt", {
+              value,
+              id: id,
+              Qindex: index,
+              confirmation: conf,
+            }); // 풀이 1 선택하면 풀이과정 입력하는 새로운 component로 이동
+            setDisable_A(true);
+            setDisable_B(false); //한번 프롬프트에 접근하면 다시 들어갈 수 없음
           }}
         >
-          <Text style={styles.solText}>
-            Write an equation to solve the problem.
-          </Text>
+          <Text style={styles.solText}>{Strategy_A}</Text>
         </TouchableOpacity>
-
         <TouchableOpacity
-          style={styles.solButton}
-          // onPress={() => {
-          //   navigation.navigate("InputSol");
-          // }}
+          disabled={disable_B}
+          style={{
+            backgroundColor: disable_B ? "#B3B6C4" : "#FFFFFF",
+            ...styles.solButton,
+          }}
+          onPress={() => {
+            let value = getPromptData_B();
+            let conf = getConfirmation("B");
+            navigation.navigate("Prompt", {
+              value,
+              id: id,
+              Qindex: index,
+              confirmation: conf,
+            });
+            setDisable_B(true);
+            setDisable_C(false);
+          }}
         >
-          <Text style={styles.solText}>
-            Add on the shipping fee until I get to $85,75.
-          </Text>
+          <Text style={styles.solText}>{Strategy_B}</Text>
         </TouchableOpacity>
-
         <TouchableOpacity
-          style={styles.solButton}
-          // onPress={() => {
-          //   navigation.navigate("InputSol");
-          // }}
+          disabled={disable_C}
+          style={{
+            backgroundColor: disable_C ? "#B3B6C4" : "#FFFFFF",
+            ...styles.solButton,
+          }}
+          onPress={() => {
+            let value = getPromptData_C();
+            let conf = getConfirmation("C");
+            navigation.navigate("Prompt", {
+              value,
+              id: id,
+              Qindex: index,
+              confirmation: conf,
+            });
+            setDisable_C(true);
+          }}
         >
-          <Text style={styles.solText}>
-            Subtract away from $85,75 until I get to O.
-          </Text>
+          <Text style={styles.solText}>{Strategy_C}</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
-  )
-}
+  );
+  function getPromptData_A() {
+    var PromptData = questionData.Strategy_A_Prompt.arrayValue.values;
+    var PromptAnswer = questionData.Answer.mapValue.fields.A.arrayValue.values;
+    console.log(PromptData[0].stringValue);
+    console.log(PromptAnswer[0].stringValue);
+    return { PromptData, PromptAnswer };
+  }
+  function getConfirmation(selector) {
+    if (selector == "A") {
+      var confirmation = questionData.Strategy_A_confirmation.stringValue;
+    }
+    if (selector == "B") {
+      var confirmation = questionData.Strategy_B_confirmation.stringValue;
+    }
+    if (selector == "C") {
+      var confirmation = questionData.Strategy_C_confirmation.stringValue;
+    }
+    return confirmation;
+  }
+
+  function getPromptData_B() {
+    var PromptData = questionData.Strategy_B_Prompt.arrayValue.values;
+    var PromptAnswer = questionData.Answer.mapValue.fields.B.arrayValue.values;
+    console.log(PromptData[0].stringValue);
+    console.log(PromptAnswer[0].stringValue);
+    return { PromptData, PromptAnswer };
+  }
+
+  function getPromptData_C() {
+    var PromptData = questionData.Strategy_C_Prompt.arrayValue.values;
+    var PromptAnswer = questionData.Answer.mapValue.fields.C.arrayValue.values;
+    console.log(PromptData[0].stringValue);
+    console.log(PromptAnswer[0].stringValue);
+    return { PromptData, PromptAnswer };
+  }
+};
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 50,
-    backgrtundColor: "#fff",
+    backgroundColor: "#D8DAEA",
     alignItems: "center",
     justifyContent: "center",
+    paddingBottom: 50,
   },
 
-  quizText: {
-    paddingTop: 30,
+  Question: {
+    marginTop: 70,
     width: "90%",
-    fontSize: 25,
+    fontSize: 22,
     margin: 25,
+    paddingBottom: 30,
   },
 
   solButton: {
-    // borderWidth:1, // 테두리
-    // backgroundColor: "#3498db",
-    backgroundColor: "#FFFAA0",
-    padding: 16,
-    margin: 10,
+    width: "90%",
+    padding: 15,
+    margin: 15,
     borderRadius: 12,
   },
 

@@ -14,18 +14,9 @@ export default function TextInputMethod(props) {
     />
   );
 }
-const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: "#D8DAEA",
-  //   alignItems: "center",
-  //   // justifyContent: "center",
-  // },
 
+const styles = StyleSheet.create({
   inputStyle: {
-    // fontSize: 20,
-    // borderBottomColor: "#050505",
-    // borderBottomWidth: 1,
     width: "80%",
     height: 60,
     paddingHorizontal: 10,
@@ -35,5 +26,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     fontSize: 20,
     margin: 10,
+    // borderBottomColor: "#050505",
+    // borderBottomWidth: 1,
   },
 });

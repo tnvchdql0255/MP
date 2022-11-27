@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { getAuth } from "firebase/auth";
@@ -12,6 +12,7 @@ import MainMenu from "./comp/MainMenu";
 import Register from "./comp/Register";
 import QuizScreen from "./comp/QuizScreen";
 import InputSol from "./comp/InputSol";
+import Prompt from "./comp/Prompt";
 
 const Stack = createNativeStackNavigator(); //네비게이션 스택 생성
 
@@ -53,20 +54,9 @@ export default function App() {
             <Register auth={auth} navigation={navigation}></Register>
           )}
         ></Stack.Screen>
-
-        <Stack.Screen
-          name="QuizScreen"
-          children={({ navigation }) => (
-            <QuizScreen auth={auth} navigation={navigation}></QuizScreen>
-          )}
-        />
-
-        <Stack.Screen
-          name="InputSol"
-          children={({ navigation }) => (
-            <InputSol auth={auth} navigation={navigation}></InputSol>
-          )}
-        ></Stack.Screen>
+        <Stack.Screen name="QuizScreen" component={QuizScreen} />
+        <Stack.Screen name="InputSol" component={InputSol}></Stack.Screen>
+        <Stack.Screen name="Prompt" component={Prompt}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -78,7 +68,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    // fontFamily: "KoPubWorld Dotum Medium",
-    // fontSize:
   },
 });

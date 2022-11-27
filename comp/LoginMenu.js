@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useState } from "react";
-import TextInputMethod from "./Design";
+import TextInputMethod from "./TextInput";
 import { LinearGradient } from "expo-linear-gradient";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import Toast from "react-native-root-toast";
@@ -42,7 +42,7 @@ export default function LoginScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome{"\n"}sign in to countunue</Text>
+      <Text style={styles.welcome}>Welcome{"\n"}sign in to continue</Text>
       <TextInputMethod
         inputData={IDinputData}
         onChangeText={onChangeID}
@@ -57,25 +57,20 @@ export default function LoginScreen(props) {
         placeholder="PASSWORD"
       ></TextInputMethod>
 
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.text} onPress={() => handleLogin()}>
+      <TouchableOpacity style={styles.button}  onPress={() => handleLogin()}>
+        <Text style={styles.text}>
           Login
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Register")}>
         <Text
           style={styles.text}
-          onPress={() => props.navigation.navigate("Register")}>
+          
+        >
           Register
         </Text>
       </TouchableOpacity>
-
-      {/* <Button style = {styles.button} title="Login" onPress={() => handleLogin()}></Button>
-      <Button style = {styles.button}
-        title="Register"
-        onPress={() => props.navigation.navigate("Register")}
-      ></Button> */}
     </View>
   );
 }
@@ -89,10 +84,8 @@ const styles = StyleSheet.create({
   },
 
   welcome: {
-    // fontFamily: "",
     fontSize: 45,
     fontWeight: "bold",
-    // marginLeft: 40,
     marginTop: 70,
     paddingBottom: 50,
   },
@@ -109,6 +102,5 @@ const styles = StyleSheet.create({
   text: {
     color: "#000000",
     fontSize: 20,
-    // fontStyle: "bold"
   },
 });

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { View, Text,  TextInput, Button, StyleSheet, TouchableOpacity } from "react-native";
-import QuizScreen from "./QuizScreen";
+import { View, Text,  TextInput, StyleSheet, TouchableOpacity } from "react-native";
 
 const InputSol = (props) => {
   const [solInput, setSolInput] = useState("");
@@ -31,19 +30,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  // 선택한 풀이
   solPick: {
     paddingTop: 30,
     fontSize: 25,
     margin: 30,
   },
 
-  // 풀이 box
   solBox: {
     margin: 30,
     padding: 10,
     fontSize: 20,
-    // width: 250,
     height: 100,
     multiline: "true",
     borderColor: "#999",
@@ -52,7 +48,6 @@ const styles = StyleSheet.create({
     textAlignVertical: "top",
   },
 
-  // 풀이 Text
   solInput: {
     color: "#000000",
     fontSize: 22,
@@ -60,7 +55,6 @@ const styles = StyleSheet.create({
     // textAlignVertical: "top"
   },
 
-  // 답안 제출(저장) 버튼
   save: {
     backgroundColor: "#FFFAA0",
     padding: 15,
