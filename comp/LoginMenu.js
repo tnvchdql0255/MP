@@ -2,8 +2,6 @@ import {
   Text,
   View,
   StyleSheet,
-  Button,
-  TextInput,
   TouchableOpacity,
 } from "react-native";
 import { useState } from "react";
@@ -14,7 +12,7 @@ import Toast from "react-native-root-toast";
 
 export default function LoginScreen(props) {
   const auth = props.auth;
-  const [IDinputData, setIDInputData] = useState("lim1@test.com");
+  const [IDinputData, setIDInputData] = useState("hee@test.com");
   const [PWinputData, setPWInputData] = useState("000000");
 
   const handleLogin = () => {
@@ -80,7 +78,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#D8DAEA",
     alignItems: "center",
-    // justifyContent: "center",
   },
 
   welcome: {

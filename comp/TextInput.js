@@ -26,7 +26,5 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     fontSize: 20,
     margin: 10,
-    // borderBottomColor: "#050505",
-    // borderBottomWidth: 1,
   },
 });

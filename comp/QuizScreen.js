@@ -31,7 +31,7 @@ const QuizScreen = ({ navigation, route }) => {
     setModalVisable(false);
   }
   return (
-    <View style = {styles.container}>
+    <View style={styles.container}>
       <Modal
         animationType="slide"
         transparent={true}
@@ -41,7 +41,7 @@ const QuizScreen = ({ navigation, route }) => {
         <ModalContent modalOff={modalOff} oeq={openEndedQ}></ModalContent>
       </Modal>
       <ScrollView>
-        <Text style={styles.Question}> {mainQuestion} </Text>
+        <Text style={styles.Question}>{mainQuestion}</Text>
         <TouchableOpacity // 버튼 대신 TouchableOpacity 사용
           disabled={disable_A}
           style={{
@@ -144,7 +144,6 @@ const QuizScreen = ({ navigation, route }) => {
   }
 };
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -156,22 +155,23 @@ const styles = StyleSheet.create({
 
   Question: {
     marginTop: 70,
-    width: "90%",
+    maxWidth: "100%",
     fontSize: 22,
     margin: 25,
     paddingBottom: 30,
   },
 
   solButton: {
-    width: "90%",
-    padding: 15,
-    margin: 15,
+    flex: 1,
+    maxWidth: "100%",
+    padding: 13,
+    margin: 12,
     borderRadius: 12,
   },
 
   solText: {
     color: "#000000",
-    fontSize: 22,
+    fontSize: 20,
   },
 });
 

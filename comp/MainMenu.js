@@ -130,9 +130,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#D8DAEA",
-    alignItems: "center", //세로
-    justifyContent: "center", //가로
-    // flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     paddingBottom: 50,
   },
 
@@ -146,8 +145,9 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     backgroundColor: "#FFFFFF",
-    padding: 13,
-    margin: 12,
+    width: "95%",
+    padding: 15,
+    margin: 13,
     borderRadius: 30,
   },
 

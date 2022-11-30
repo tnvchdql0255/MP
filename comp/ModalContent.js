@@ -30,7 +30,7 @@ export default function ModalContent(props) {
             style={styles.touchableOpacity}
             onPress={props.modalOff}
           >
-            <Text style={[styles.text, { color: "blue" }]}>OK</Text>
+            <Text style={[styles.text, { color: "#B3B6C4" }]}>OK</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   modal: {
     height: "30%",
-    width: "50%",
+    width: "80%",
     paddingTop: 10,
     backgroundColor: "white",
     borderRadius: 12,

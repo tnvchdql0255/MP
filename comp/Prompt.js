@@ -87,7 +87,7 @@ export default function Prompt({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <Text>{prompt}</Text>
+      <Text style={styles.question}>{prompt}</Text>
       <TextInputMethod
         inputData={input}
         secureTextEntry={false}
@@ -113,7 +113,7 @@ export default function Prompt({ navigation, route }) {
             passPrompt();
           }}
         >
-          <Text style={styles.text}>pass</Text>
+          <Text style={styles.text}>   pass   </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -124,31 +124,42 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#D8DAEA",
-    alignItems: "center",
-    // justifyContent: "center",
+    alignItems: "center", // flexDirection과 수직
     paddingBottom: 50,
   },
 
+  question: {
+    color:"#000000",
+    marginTop: 70,
+    maxWidth: "100%",
+    fontSize: 22,
+    margin: 25,
+    paddingBottom: 30,
+  },
+
   ButtonLayout: {
-    width: "100%",
+    flex: 1,
+    maxWidth: "55%",
     flexDirection: "row",
-    right: "20px",
-    // alignContent: ""
+    alignContent: "center",
+    justifyContent: "center",
+    marginLeft: "38%",
   },
 
   button: {
-    flex:1,
     backgroundColor: "#FFFFFF",
-    maxWidth: "20%",
-    padding: 13,
+    maxWidth: "100%",
+    maxHeight: "12%",
+    padding: 10,
     margin: 12,
     borderRadius: 12,
-    
   },
 
   text: {
     color: "#000000",
     fontSize: 20,
-    alignItems: "center",
-  },
+    fontWeight: "bold",
+    alignContent: "center",
+    textAlign: "center"
+  }
 });

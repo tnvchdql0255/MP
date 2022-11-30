@@ -74,14 +74,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#D8DAEA",
     alignItems: "center",
-    // justifyContent: "center",
+    justifyContent: "center",
   },
 
   welcome: {
-    // fontFamily: "",
     fontSize: 45,
     fontWeight: "bold",
-    // marginLeft: 40,
     marginTop: 70,
     paddingBottom: 50,
   },
@@ -98,6 +96,5 @@ const styles = StyleSheet.create({
   text: {
     color: "#000000",
     fontSize: 20,
-    // fontStyle: "bold"
   },
 });
