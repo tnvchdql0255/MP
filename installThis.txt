@@ -28,13 +28,6 @@ node 버전:16.17.0
 확장 라이브러리: ++npm i react-native-bouncy-checkbox --save    //checkbox 위한 라이브러리
 
 
-22.11.08
-추가한 사람: 정경희
-확장 라이브러리:
-++npx react-native-asset // 폰트 커스텀 라이브러리
-    // npx react-native link 명령어를 실행해야 하는데 해당 명령어가 React Native 0.69부터 제거됨. 대체 라이브러리
-    // 참고: https://stackoverflow.com/questions/72872203/unrecognized-command-link-when-linking-fonts-in-react-native
-
 
 22.11.20
 추가한 사람: 임건우
