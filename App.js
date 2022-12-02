@@ -21,7 +21,7 @@ export default function App() {
   //     .catch((error) => {
   //       alert("failed to upload:" + { error });
   //     });
-  // }
+  // } // 문제 firebase에 등록했던 코드
 
   return (
     <NavigationContainer>
