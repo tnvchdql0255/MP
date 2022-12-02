@@ -1,0 +1,25 @@
+npm 버전: 8.19.0
+node 버전:16.17.0
+
+--FOR DB CRUD(create, read, update, delete)--
+    ++npm install firebase
+    필수 파일: root 디렉토리에 metro.config.js 추가 (내용은 파일참조)
+                +comp/firebaseConfig.js 필수
+--앱 페이지이동(네비게이션)--
+    ++npm install @react-navigation/native
+    ++npm install @react-navigation/native-stack
+--앱 BarChart(막대 그래프)--
+    ++npm install react-native-chart-kit
+    ++npm install dimensions
+
+--build error 해결
+    "node_modules/color-string/index.js" 의
+    var swizzle = require('simple-swizzle'); 부분 주석처리
+
+    "node_modules/css-what/lib/commonjs/index.js" 의
+    var parse_1 = require("./parse"); 부분 주석처리
+
+##필수는 아님##
+--웹에서 프로젝트 실행하기--
+    ++npx expo install react-native-web@~0.18.7 react-dom@18.0.0 @expo/webpack-config@^0.17.0
+
