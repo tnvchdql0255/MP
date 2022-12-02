@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
-// import { getDoc, collection, doc, query } from "firebase/firestore";
-// import { db } from "./firebaseConfig";
 import MyBarChart from "./BarChart";
 
-const MainMenu = (props) => {
+const MainMenu = () => {
   return (
     <View style={styles.container}>
       <MyBarChart />

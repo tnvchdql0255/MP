@@ -1,18 +1,4 @@
-import { StatusBar } from "expo-status-bar";
 import { Button, StyleSheet, Text, View } from "react-native";
-import { TextInput } from "react-native";
-import { useState } from "react";
-import {
-  doc,
-  setDoc,
-  getDoc,
-  getFirestore,
-  collection,
-  getDocs,
-  query,
-} from "firebase/firestore";
-// import { firebaseConfig } from "./comp/firebaseConfig";
-import { initializeApp } from "firebase/app";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "./comp/LoginScreen";
