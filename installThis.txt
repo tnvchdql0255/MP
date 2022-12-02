@@ -1,0 +1,42 @@
+npm 버전: 8.19.0
+node 버전:16.17.0
+
+22.10.20
+추가한 사람: 임건우
+확장 라이브러리: 
+    앱 페이지이동(네비게이션)
+    ++npm install @react-navigation/native
+    ++npm install @react-navigation/native-stack
+    참고한 강의: https://www.youtube.com/watch?v=TKSRzf5eBNI
+    
+    LinearColor Gradient (선형색상그라데이션)
+    ++expo install expo-linear-gradient
+    참고한 강의: expo공식사이트 참조
+
+
+--아래에도 동일한 형식으로 작성--
+22.10.24
+추가한 사람: 임건우
+확장 라이브러리:++expo install firebase  //db용
+               ++npm install react-native-root-toast  //화면에 작게뜨는 메시지같은거
+필수 파일: root 디렉토리에 metro.config.js 추가 (내용은 파일참조)
+         +comp/firebaseConfig.js 필수
+
+
+22.10.31
+추가한 사람: 심규대
+확장 라이브러리: ++npm i react-native-bouncy-checkbox --save    //checkbox 위한 라이브러리
+
+
+22.11.08
+추가한 사람: 정경희
+확장 라이브러리:
+++npx react-native-asset // 폰트 커스텀 라이브러리
+    // npx react-native link 명령어를 실행해야 하는데 해당 명령어가 React Native 0.69부터 제거됨. 대체 라이브러리
+    // 참고: https://stackoverflow.com/questions/72872203/unrecognized-command-link-when-linking-fonts-in-react-native
+
+
+22.11.20
+추가한 사람: 임건우
+확장 라이브러리:
+++ npm install zustand
