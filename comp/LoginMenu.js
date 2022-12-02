@@ -7,8 +7,8 @@ import Toast from "react-native-root-toast";
 
 export default function LoginScreen(props) {
   const auth = props.auth;
-  const [IDinputData, setIDInputData] = useState("hee@test.com");
-  const [PWinputData, setPWInputData] = useState("000000");
+  const [IDinputData, setIDInputData] = useState("");
+  const [PWinputData, setPWInputData] = useState("");
   //로그인 기능 정의
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, IDinputData, PWinputData)
