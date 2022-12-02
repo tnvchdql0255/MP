@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import TextInputMethod from "./TextInput";
 
 export default function Register(props) {
+  //회원가입 기능
   const auth = props.auth;
   console.log(auth);
   const [ID, setID] = useState("");

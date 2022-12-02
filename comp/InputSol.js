@@ -1,6 +1,13 @@
 import React, { useState } from "react";
-import { View, Text,  TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 
+//아무기능도 하지않음(더미코드)
 const InputSol = (props) => {
   const [solInput, setSolInput] = useState("");
 

@@ -1,5 +1,6 @@
 import create from "zustand";
 
+//문제풀때 점수 보관용
 const useStore = create((set) => ({
   data: 0,
   addData: () => set((state) => ({ data: state.data + 1 })),

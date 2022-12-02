@@ -81,7 +81,8 @@ export default function MainMenu({ navigation, route }) {
     const querySnapshot = await getDocs(q);
     const parsedData = JSON.parse(JSON.stringify(querySnapshot));
     var userList = parsedData._snapshot.docChanges; // 문제 수 가져오는 부분
-    console.log(userList);
+
+    //유저 리스트를 조회해서 로그인 데이터와 일치하는 점수를 가져옴
     for (let i = 0; i < userList.length; i++) {
       if (
         userList[i].doc.data.value.mapValue.fields.uID.stringValue == loginData
@@ -103,7 +104,7 @@ export default function MainMenu({ navigation, route }) {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text>{" "}</Text>
+        <Text> </Text>
         {/* 스크롤 숨기기 */}
         <Text style={styles.text}>Hi,{"\n"}Click on the question number!</Text>
         {questionIndex.map((item, idx) => (

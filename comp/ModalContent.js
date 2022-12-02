@@ -9,6 +9,7 @@ import {
 import React, { useState } from "react";
 import TextInputMethod from "./TextInput";
 
+//모달컨텐츠 정의
 export default function ModalContent(props) {
   const [input, setInput] = useState();
   return (

@@ -1,9 +1,4 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import TextInputMethod from "./TextInput";
 import { LinearGradient } from "expo-linear-gradient";
@@ -14,7 +9,7 @@ export default function LoginScreen(props) {
   const auth = props.auth;
   const [IDinputData, setIDInputData] = useState("hee@test.com");
   const [PWinputData, setPWInputData] = useState("000000");
-
+  //로그인 기능 정의
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, IDinputData, PWinputData)
       .then((userCredentials) => {
@@ -55,19 +50,15 @@ export default function LoginScreen(props) {
         placeholder="PASSWORD"
       ></TextInputMethod>
 
-      <TouchableOpacity style={styles.button}  onPress={() => handleLogin()}>
-        <Text style={styles.text}>
-          Login
-        </Text>
+      <TouchableOpacity style={styles.button} onPress={() => handleLogin()}>
+        <Text style={styles.text}>Login</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Register")}>
-        <Text
-          style={styles.text}
-          
-        >
-          Register
-        </Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => props.navigation.navigate("Register")}
+      >
+        <Text style={styles.text}>Register</Text>
       </TouchableOpacity>
     </View>
   );
