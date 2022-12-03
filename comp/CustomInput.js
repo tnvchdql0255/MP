@@ -1,13 +1,13 @@
 import { StyleSheet, TextInput } from "react-native";
 
-const CustomInput = ({ value, setValue, placeholder, secureTextEntry }) => {
+const CustomInput = ({ value, setValue, placeholder }) => {
   return (
     <TextInput
+      //LoginScreen에서 CustomInput에 전달할 인자
       value={value}
       onChangeText={setValue}
       placeholder={placeholder}
       style={styles.input}
-      secureTextEntry={secureTextEntry}
     />
   );
 };

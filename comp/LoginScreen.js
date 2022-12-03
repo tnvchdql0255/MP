@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput, Image } from "react-native";
-import { Firestore } from "firebase/firestore";
-import { StatusBar } from "expo-status-bar";
+
 import { getDoc, collection, doc } from "firebase/firestore";
 import { db } from "./firebaseConfig";
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
 
 const LoginScreen = (props) => {
-  const [users, setUsers] = useState();
+  // const [users, setUsers] = useState();
   const [Str, setStr] = useState("");
-  const [Data, setData] = useState("");
+  // const [Data, setData] = useState("");
+  // db에서 선생님 데이터 읽어오는 함수
   const read = async () => {
-    const docR = doc(db, "Teacher", "James");
+    // firestore의 Teacher 에서 Teacher의 정보 저장
+    const docR = doc(db, "Teacher", "TeacherName");
     const data = await getDoc(docR);
-    const userName = data._document.data.value.mapValue.fields.name.stringValue; //firebase 선생님 정보 가져오는 부분
-    // setUsers(data.docs.map(doc => ({ ...doc.data(), name: doc.name })));
-    // console.log(userName);
-    // console.log(JSON.parse(JSON.stringify(data)));
-    if (Str == userName) {
+    //firebase 선생님 이름 가져오는 부분
+    const userName = data._document.data.value.mapValue.fields.name.stringValue;
+    const userName1 =
+      data._document.data.value.mapValue.fields.name1.stringValue;
+
+    if (Str == userName || Str == userName1) {
       props.navigation.navigate("MainMenu");
     } else {
       alert("Login Error");
@@ -31,28 +33,18 @@ const LoginScreen = (props) => {
         <Text style={styles.signInText}>HELLO,</Text>
         <Text style={styles.signInText}>THIS IS A TEACHER APP</Text>
         <Text style={styles.signInTextS}>Please log in to use the service</Text>
-
-        {/* <TextInput
-        style={styles.input}
-        placeholder="name"
-        value={Str}
-        onChangeText={(e) => setStr(e)}
-      ></TextInput> */}
       </View>
       <View style={styles.imageContainer}>
         <Image
+          //가로 세로 중 넓은 부분이 100%를 차지할 때 까지만 이미지를 늘리는 것
           style={{ height: "100%", width: "100%", resizeMode: "contain" }}
           source={require("../assets/teacher.png")}
         />
       </View>
-
       <View style={styles.signInTextContainer1}>
         <CustomInput value={Str} setValue={setStr} placeholder="Username" />
-        <Text>{Data}</Text>
+        {/* <Text>{Data}</Text> */}
         <CustomButton onPress={read} text="Sign In" />
-        {/* <Button title="Login" onPress={read}></Button> */}
-        {/* <Button title="get data" onPress={read}></Button> */}
-        <StatusBar style="auto" />
       </View>
     </View>
   );
@@ -63,14 +55,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     backgroundColor: "#819FF7",
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderRadius: 10,
-    borderWidth: 1,
-    minWidth: "80%",
-    padding: 10,
   },
   signInTextContainer: {
     flex: 2,

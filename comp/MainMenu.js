@@ -19,12 +19,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 10,
   },
-  header: {
-    textAlign: "center",
-    fontSize: 18,
-    padding: 16,
-    marginTop: 16,
-  },
 });
 
 export default MainMenu;

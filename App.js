@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "./comp/LoginScreen";
 import MainMenu from "./comp/MainMenu";
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator(); //Stack Navigator 생성
 
 export default function App() {
   // const app = initializeApp(firebaseConfig);
