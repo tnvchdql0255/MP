@@ -11,7 +11,6 @@ import LoginScreen from "./comp/LoginMenu";
 import MainMenu from "./comp/MainMenu";
 import Register from "./comp/Register";
 import QuizScreen from "./comp/QuizScreen";
-import InputSol from "./comp/InputSol";
 import Prompt from "./comp/Prompt";
 
 const Stack = createNativeStackNavigator(); //네비게이션 스택 생성
@@ -55,7 +54,6 @@ export default function App() {
           )}
         ></Stack.Screen>
         <Stack.Screen name="QuizScreen" component={QuizScreen} />
-        <Stack.Screen name="InputSol" component={InputSol}></Stack.Screen>
         <Stack.Screen name="Prompt" component={Prompt}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

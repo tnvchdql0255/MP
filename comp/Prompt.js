@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import { dbio, db } from "./firebaseConfig";
 import useStore from "./globalData";
+import { globalStyle } from "./style/GlobalStyle";
 
 export default function Prompt({ navigation, route }) {
   console.log(route.params.confirmation);
@@ -86,8 +87,8 @@ export default function Prompt({ navigation, route }) {
   }, [currentIndex]);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.question}>{prompt}</Text>
+    <View style={globalStyle.container}>
+      <Text style={globalStyle.question}>{prompt}</Text>
       <TextInputMethod
         inputData={input}
         secureTextEntry={false}
@@ -99,21 +100,21 @@ export default function Prompt({ navigation, route }) {
 
       <View style={styles.ButtonLayout}>
         <TouchableOpacity
-          style={styles.button}
+          style={styles.userButton}
           onPress={() => {
             isCorrect();
           }}
         >
-          <Text style={styles.text}>confirm</Text>
+          <Text style={globalStyle.buttonText}>confirm</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.button}
+          style={styles.userButton}
           onPress={() => {
             passPrompt();
           }}
         >
-          <Text style={styles.text}>   pass   </Text>
+          <Text style={globalStyle.buttonText}>  pass  </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -121,22 +122,6 @@ export default function Prompt({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#D8DAEA",
-    alignItems: "center", // flexDirection과 수직
-    paddingBottom: 50,
-  },
-
-  question: {
-    color:"#000000",
-    marginTop: 70,
-    maxWidth: "100%",
-    fontSize: 22,
-    margin: 25,
-    paddingBottom: 30,
-  },
-
   ButtonLayout: {
     flex: 1,
     maxWidth: "55%",
@@ -146,20 +131,12 @@ const styles = StyleSheet.create({
     marginLeft: "38%",
   },
 
-  button: {
+  userButton: {
     backgroundColor: "#FFFFFF",
     maxWidth: "100%",
-    maxHeight: "12%",
+    maxHeight: "20%",
     padding: 10,
     margin: 12,
     borderRadius: 12,
   },
-
-  text: {
-    color: "#000000",
-    fontSize: 20,
-    fontWeight: "bold",
-    alignContent: "center",
-    textAlign: "center"
-  }
 });

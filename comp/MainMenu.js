@@ -21,6 +21,7 @@ import { initializeApp } from "firebase/app";
 import { db } from "./firebaseConfig";
 import { useEffect, useState } from "react";
 import useStore from "./globalData";
+import { globalStyle } from "./style/GlobalStyle";
 
 export default function MainMenu({ navigation, route }) {
   const app = initializeApp(firebaseConfig);
@@ -101,14 +102,13 @@ export default function MainMenu({ navigation, route }) {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={globalStyle.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text>{" "}</Text>
-        {/* 스크롤 숨기기 */}
-        <Text style={styles.text}>Hi,{"\n"}Click on the question number!</Text>
+        <Text style={styles.topText}>Hi,</Text>
+        <Text style={styles.BottomText}>Click on the question</Text>
         {questionIndex.map((item, idx) => (
           <TouchableOpacity
-            style={styles.button}
+            style={styles.userButton}
             key={idx}
             onPress={() =>
               navigation.navigate("QuizScreen", {
@@ -118,7 +118,7 @@ export default function MainMenu({ navigation, route }) {
               })
             }
           >
-            <Text style={styles.questionLable}>{"Question " + item}</Text>
+            <Text style={globalStyle.buttonText}>{"Question " + item}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -127,32 +127,27 @@ export default function MainMenu({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#D8DAEA",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingBottom: 50,
-  },
-
-  text: {
-    fontSize: 34,
+  topText: {
+    fontSize: 45,
     fontWeight: "bold",
-    marginTop: 70,
-    paddingBottom: 50,
+    maxWidth: "100%",
+    marginTop: 80,
+    marginRight: 280,
   },
 
-  button: {
+  BottomText: {
+    fontSize: 35,
+    marginRight: 90,
+    paddingBottom: 35,
+    color: "#000000",
+  },
+
+  userButton: {
+    width: "90%",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
-    width: "95%",
-    padding: 15,
-    margin: 13,
+    padding: 14,
+    margin: 15,
     borderRadius: 30,
-  },
-
-  questionLable: {
-    color: "#000000",
-    fontSize: 20,
   },
 });

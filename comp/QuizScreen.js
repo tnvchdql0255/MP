@@ -8,6 +8,7 @@ import {
   Modal,
 } from "react-native";
 import ModalContent from "./ModalContent";
+import { globalStyle } from "./style/GlobalStyle";
 
 const QuizScreen = ({ navigation, route }) => {
   var questionData = route.params.questionData;
@@ -31,7 +32,7 @@ const QuizScreen = ({ navigation, route }) => {
     setModalVisable(false);
   }
   return (
-    <View style={styles.container}>
+    <View style={globalStyle.container}>
       <Modal
         animationType="slide"
         transparent={true}
@@ -41,12 +42,12 @@ const QuizScreen = ({ navigation, route }) => {
         <ModalContent modalOff={modalOff} oeq={openEndedQ}></ModalContent>
       </Modal>
       <ScrollView>
-        <Text style={styles.Question}>{mainQuestion}</Text>
-        <TouchableOpacity // 버튼 대신 TouchableOpacity 사용
+        <Text style={globalStyle.question}>{mainQuestion}</Text>
+        <TouchableOpacity
           disabled={disable_A}
           style={{
             backgroundColor: disable_A ? "#B3B6C4" : "#FFFFFF",
-            ...styles.solButton,
+            ...styles.userButton,
           }}
           onPress={() => {
             let value = getPromptData_A();
@@ -61,13 +62,13 @@ const QuizScreen = ({ navigation, route }) => {
             setDisable_B(false); //한번 프롬프트에 접근하면 다시 들어갈 수 없음
           }}
         >
-          <Text style={styles.solText}>{Strategy_A}</Text>
+          <Text style={globalStyle.buttonText}>{Strategy_A}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           disabled={disable_B}
           style={{
             backgroundColor: disable_B ? "#B3B6C4" : "#FFFFFF",
-            ...styles.solButton,
+            ...styles.userButton,
           }}
           onPress={() => {
             let value = getPromptData_B();
@@ -82,13 +83,13 @@ const QuizScreen = ({ navigation, route }) => {
             setDisable_C(false);
           }}
         >
-          <Text style={styles.solText}>{Strategy_B}</Text>
+          <Text style={globalStyle.buttonText}>{Strategy_B}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           disabled={disable_C}
           style={{
             backgroundColor: disable_C ? "#B3B6C4" : "#FFFFFF",
-            ...styles.solButton,
+            ...styles.userButton,
           }}
           onPress={() => {
             let value = getPromptData_C();
@@ -102,7 +103,7 @@ const QuizScreen = ({ navigation, route }) => {
             setDisable_C(true);
           }}
         >
-          <Text style={styles.solText}>{Strategy_C}</Text>
+          <Text style={globalStyle.buttonText}>{Strategy_C}</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
@@ -145,33 +146,11 @@ const QuizScreen = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#D8DAEA",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingBottom: 50,
-  },
-
-  Question: {
-    marginTop: 70,
-    maxWidth: "100%",
-    fontSize: 22,
-    margin: 25,
-    paddingBottom: 30,
-  },
-
-  solButton: {
-    flex: 1,
-    maxWidth: "100%",
-    padding: 13,
-    margin: 12,
+  userButton: {
+    maxWidth: "95%",
+    padding: 14,
+    margin: 15,
     borderRadius: 12,
-  },
-
-  solText: {
-    color: "#000000",
-    fontSize: 20,
   },
 });
 

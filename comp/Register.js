@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { View, Button, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import TextInputMethod from "./TextInput";
+import { globalStyle } from "./style/GlobalStyle";
 
 export default function Register(props) {
   const auth = props.auth;
@@ -37,8 +38,8 @@ export default function Register(props) {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>sign in</Text>
+    <View style={globalStyle.container}>
+      <Text style={globalStyle.topText}>sign in</Text>
       <TextInputMethod
         inputData={ID}
         onChangeText={onChangeID}
@@ -59,31 +60,15 @@ export default function Register(props) {
       ></TextInputMethod>
 
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.text} onPress={checkPW_isEqual}>
+        <Text style={globalStyle.buttonText} onPress={checkPW_isEqual}>
           Create ID
         </Text>
       </TouchableOpacity>
-
-      {/* <Button title="Go to login" onPress={checkPW_isEqual}></Button> */}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#D8DAEA",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  welcome: {
-    fontSize: 45,
-    fontWeight: "bold",
-    marginTop: 70,
-    paddingBottom: 50,
-  },
-
   button: {
     width: "75%",
     alignItems: "center",
@@ -91,10 +76,5 @@ const styles = StyleSheet.create({
     padding: 13,
     margin: 12,
     borderRadius: 30,
-  },
-
-  text: {
-    color: "#000000",
-    fontSize: 20,
   },
 });

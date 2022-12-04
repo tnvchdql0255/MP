@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     opacity: 0.6,
     backgroundColor: "#ffffff",
-    borderRadius: 10,
+    borderRadius: 12,
     marginVertical: 20,
     fontSize: 20,
     margin: 10,
