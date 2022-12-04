@@ -11,6 +11,7 @@ export default function Register(props) {
   const [PW, setPW] = useState({ pw: "", pwCheck: "" });
 
   const handleCreateAccount = () => {
+    console.log("시도");
     createUserWithEmailAndPassword(auth, ID, PW.pw)
       .then(() => {
         alert("Create ID !");
@@ -59,10 +60,8 @@ export default function Register(props) {
         placeholder="RePassword"
       ></TextInputMethod>
 
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.text} onPress={checkPW_isEqual}>
-          Create ID
-        </Text>
+      <TouchableOpacity style={styles.button} onPress={checkPW_isEqual}>
+        <Text style={styles.text}>Create ID</Text>
       </TouchableOpacity>
 
       {/* <Button title="Go to login" onPress={checkPW_isEqual}></Button> */}
