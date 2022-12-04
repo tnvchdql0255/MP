@@ -21,6 +21,7 @@ const MyBarChart = () => {
   const [userPointData, setUPD] = useState([]);
   var UListData = []; //학생 ID 저장하기 위한 배열
   var UPointData = []; //학생 점수 저장하기 위한 배열
+  var userList = [];
   //학생의 아이디, 점수 데이터 db에서 받아오는 함수
   async function getUserData() {
     //firestore의 UserStatus 데이터에 접근
@@ -28,7 +29,7 @@ const MyBarChart = () => {
     const querySnapshot = await getDocs(q);
     var data = JSON.parse(JSON.stringify(querySnapshot)); //JSON 데이터 추출
     //JSON 데이터 추출한 곳에서 학생의 ID에 접근하여 userList 배열에 저장
-    var userList = data._snapshot.docChanges;
+    userList = data._snapshot.docChanges;
     for (var x = 0; x < userList.length; x++) {
       UListData = [
         ...UListData,
@@ -47,33 +48,37 @@ const MyBarChart = () => {
   return (
     <View>
       <Text style={styles.header}>Student Score</Text>
-      <BarChart
-        data={{
-          labels: userListData, // labels에 userListData 넣기
-          datasets: [
-            {
-              data: userPointData, // data에 userPointData 넣기
+      <ScrollView>
+        <BarChart
+          data={{
+            labels: userListData, // labels에 userListData 넣기
+            datasets: [
+              {
+                data: userPointData, // data에 userPointData 넣기
+              },
+            ],
+          }}
+          width={Dimensions.get("window").width - 17}
+          height={650}
+          verticalLabelRotation={90}
+          withInnerLines={true}
+          // yAxisLabel={"P"}
+          chartConfig={{
+            backgroundColor: "#1cc910",
+            backgroundGradientFrom: "#eff3ff",
+            backgroundGradientTo: "#efefef",
+            decimalPlaces: 2,
+            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+            style: {
+              borderRadius: 16,
             },
-          ],
-        }}
-        width={Dimensions.get("window").width - 16}
-        height={220}
-        // yAxisLabel={"P"}
-        chartConfig={{
-          backgroundColor: "#1cc910",
-          backgroundGradientFrom: "#eff3ff",
-          backgroundGradientTo: "#efefef",
-          decimalPlaces: 2,
-          color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-          style: {
+          }}
+          style={{
+            marginVertical: 8,
             borderRadius: 16,
-          },
-        }}
-        style={{
-          marginVertical: 8,
-          borderRadius: 16,
-        }}
-      />
+          }}
+        />
+      </ScrollView>
     </View>
   );
 };
