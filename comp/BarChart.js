@@ -58,7 +58,7 @@ const MyBarChart = () => {
               },
             ],
           }}
-          width={Dimensions.get("window").width - 17}
+          width={Dimensions.get("window").width}
           height={650}
           verticalLabelRotation={90}
           withInnerLines={true}
@@ -74,7 +74,7 @@ const MyBarChart = () => {
             },
           }}
           style={{
-            marginVertical: 8,
+            marginVertical: 5,
             borderRadius: 16,
           }}
         />
@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
   header: {
     textAlign: "center",
     fontSize: 18,
-    padding: 16,
-    marginTop: 16,
+    padding: 15,
+    marginTop: 5,
   },
 });
 
